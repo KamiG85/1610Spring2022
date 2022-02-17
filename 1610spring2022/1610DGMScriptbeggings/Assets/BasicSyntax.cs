@@ -13,7 +13,7 @@ public class NewBehaviourScript : MonoBehaviour
         **/
         Debug.Log(transform.position.x);
 
-        if (transform.position.y <= 5f)
+        if (transform.position.y <= 5f) ;
     }
 
 
@@ -22,4 +22,14 @@ public class NewBehaviourScript : MonoBehaviour
     {
      Debug.Log ("I'm about to hit the ground!"); 
     }
-}
+
+    {
+
+        // this line is there to tell me the y position of my object  
+        /* Snow today!
+       * it was cold!
+       **/
+        Debug.Log(Transform.position.x);
+
+        if (Transform.position.y <= 10f) ;
+    }
