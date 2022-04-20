@@ -1,16 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speed = 50.0f;
+    [SerializeField] float speed = 30.0f;
+    [SerializeField] float turnSpeed = 50.0f;
+   [SerializeField] float Vector3 offset = new Vector3(0, 5, -7);
+    
     private Rigidbody playerRb;
     private float zBound = 6;
+    private float horizontalInput;
+    private float verticalInput;
+
+    private UnityEvent m_MyEvent;
     
     // Start is called before the first frame update
     void Start()
     {
+        if (m_MyEvent == null)
+            m_MyEvent = new UnityEvent();
+
+        m_MyEvent.AddListener(Ping);
+        
         playerRb = GetComponent<Rigidbody>();
         
 
@@ -19,6 +32,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.anyKeyDown && m_MyEvent != null)
+        {
+            m_MyEvent.Invoke();
+        }
+        
         
         {
             MovePlayer();
@@ -57,5 +75,10 @@ public class PlayerController : MonoBehaviour
             {
                 Destroy(other.gameObject);
             }
+        }
+
+        void Ping()
+        {
+            Debug.Log("Ping");
         }
 }
