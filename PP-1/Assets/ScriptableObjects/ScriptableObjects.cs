@@ -17,14 +17,14 @@ public class ScriptableObjects : MonoBehaviour
     {
         value = number;  
     }
-    public void DisplayImage(Image image)
+    public void DisplayImage(Image img)
     {
         img.fillAmount = value; 
     }
 
-    public void DisplayNumber(Text text)
+    public void DisplayNumber(Text txt)
     {
-        text.text = value.ToString();
+        txt.text = value.ToString();
     }
     
 
