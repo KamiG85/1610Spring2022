@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private UnityEvent m_MyEvent;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (m_MyEvent == null)
             m_MyEvent = new UnityEvent();
@@ -30,8 +30,15 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        // moves  the player 
+        transform.Translate(Vector3.forward * Time.deltaTime *speed * verticalInput);
+        //rotation  
+        transform.Translate(Vector3.right, * Time.deltaTime. *turnSpeed * horizontalInput);
+
         if (Input.anyKeyDown && m_MyEvent != null)
         {
             m_MyEvent.Invoke();
@@ -40,15 +47,11 @@ public class PlayerController : MonoBehaviour
         
         {
             MovePlayer();
-
         }
-        
-        // Moves the player based on arrow key input
         void MovePlayer()
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        
 
-        playerRb.AddForce(Vector3.forward * speed * verticalInput);
+        playerRb
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
 
         if (transform.position.z < -zBound)
